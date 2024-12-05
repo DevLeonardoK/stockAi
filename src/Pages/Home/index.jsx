@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import imgCalendar from "../../assets/calendarImg.png";
 import {
   ItemsLi,
@@ -13,9 +14,16 @@ import {
   Img,
   Footer,
 } from "./styles";
+
+import { Link } from "../../Components/ButtonLink";
 import { MdCalendarViewDay } from "react-icons/md";
 
 const Home = () => {
+  const navigate = useNavigate();
+  const moveToSignin = () => {
+    navigate("/signin");
+  };
+
   return (
     <Wrapper>
       <NavBar>
@@ -29,9 +37,10 @@ const Home = () => {
           <a href="">
             <ItemsLi>Cadastrar</ItemsLi>
           </a>
-          <a href="">
-            <ItemsLi>Entrar</ItemsLi>
-          </a>
+
+          <ItemsLi>
+            <Link title="Entrar" onClick={moveToSignin}></Link>
+          </ItemsLi>
         </MenuItemsArea>
       </NavBar>
       <AreaLogoInfo>
