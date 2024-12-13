@@ -11,6 +11,6 @@ export const Input = styled.input`
   padding-left: 30px;
 
   &:focus {
-    border: 1px solid #16697a;
+    border: 1px solid #000;
   }
 `;

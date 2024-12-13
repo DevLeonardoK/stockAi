@@ -25,7 +25,6 @@ const SignIn = () => {
       alert("Data wasn't sent");
     }
   };
-
   const navigate = useNavigate();
   const moveToHome = () => {
     navigate("/home");
