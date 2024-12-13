@@ -78,7 +78,7 @@ export const ItemsLi = styled.li`
   opacity: 0.8;
 
   &:hover {
-    color: #ffd500;
+    color: #16697a;
     opacity: 1;
     text-decoration: underline;
   }

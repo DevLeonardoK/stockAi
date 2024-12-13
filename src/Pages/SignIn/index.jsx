@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Wrapper,
   ContainerLogin,
@@ -12,10 +13,22 @@ import {
 } from "./styles";
 import { Inputs } from "../../Components/Input";
 import { Button } from "../../Components/Button";
+import { Link } from "../../Components/ButtonLink";
 
 const SignIn = () => {
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const sendMessage = () => {
-    alert("Data was sent");
+    if (password || email == null) {
+      alert("Data was sent", console.log(email, password));
+    } else {
+      alert("Data wasn't sent");
+    }
+  };
+
+  const navigate = useNavigate();
+  const moveToHome = () => {
+    navigate("/home");
   };
 
   return (
@@ -24,9 +37,15 @@ const SignIn = () => {
         <TitleNavBar>Set Works</TitleNavBar>
         <MenuItemsArea>
           <ItemsUl>
-            <ItemsLi>1</ItemsLi>
-            <ItemsLi>2</ItemsLi>
-            <ItemsLi>3</ItemsLi>
+            <ItemsLi>
+              <Link title="Suporte" onClick={""}></Link>
+            </ItemsLi>
+            <ItemsLi>
+              <Link title="Home" onClick={moveToHome}></Link>
+            </ItemsLi>
+            <ItemsLi>
+              <Link title="Cadastrar" onClick={""}></Link>
+            </ItemsLi>
           </ItemsUl>
         </MenuItemsArea>
       </NavBar>
@@ -36,11 +55,15 @@ const SignIn = () => {
           placeHolder="Digite seu Login"
           name="email-Login"
           type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         ></Inputs>
         <Inputs
           placeHolder="Digite sua Senha"
           name="senha-Login"
           type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         ></Inputs>
         <Button onClick={sendMessage} content="Entrar"></Button>
       </ContainerLogin>
