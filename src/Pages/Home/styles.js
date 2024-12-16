@@ -73,9 +73,9 @@ export const AreaInfo = styled.div`
 `;
 
 export const TextInfo = styled.h2`
-  font-family: "Manrope";
+  font-family: "Poppins";
   font-size: 63px;
-  font-weight: 500;
+  font-weight: 400;
   color: #fff;
   line-height: 80px;
 `;

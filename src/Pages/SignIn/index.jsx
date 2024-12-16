@@ -15,15 +15,12 @@ import { Inputs } from "../../Components/Input";
 import { Button } from "../../Components/Button";
 import { Link } from "../../Components/ButtonLink";
 
-const SignIn = () => {
+var SignIn = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const sendMessage = () => {
-    if (password || email == null) {
-      alert("Data was sent", console.log(email, password));
-    } else {
-      alert("Data wasn't sent");
-    }
+    console.clear();
+    console.table("email: ", email, "Senha: ", password);
   };
   const navigate = useNavigate();
   const moveToHome = () => {
