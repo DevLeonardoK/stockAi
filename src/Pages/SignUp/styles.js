@@ -11,7 +11,7 @@ export const Wrapper = styled.main`
   gap: 150px;
 `;
 
-export const ContainerLogin = styled.div`
+export const ContainerData = styled.div`
   width: 550px;
   height: 430px;
   background-color: #fff;
