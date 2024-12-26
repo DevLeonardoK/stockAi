@@ -10,51 +10,53 @@ import {
   NavBar,
   TitleNavBar,
   TextInfo,
+  infoBasic,
 } from "./styles";
 import { Inputs } from "../../Components/Input";
 import { Button } from "../../Components/Button";
 import { Link } from "../../Components/ButtonLink";
+import { MdEmail, MdLock } from "react-icons/md";
+
 import axios from "axios";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+
+const schema = yup
+  .object({
+    email: yup
+      .string()
+      .email("Email não é válido")
+      .required("Campo obrigatório"),
+    password: yup
+      .string()
+      .min(6, "Minímo 6 caracteres")
+      .required("Campo obrigatório"),
+  })
+  .required();
 
 var SignUp = () => {
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [user, setUser] = useState([]);
-  const sendMessage = () => {
-    console.clear();
-    console.table("email: ", email, "Senha: ", password);
-  };
+  const [user, setUser] = useState([]); //user data (password and email)
   const navigate = useNavigate();
-  const moveToHome = () => {
-    navigate("/home");
-  };
 
-  const addUser = () => {
+  const {
+    control,
+    handleSubmit,
+    formState: { isValid, errors },
+  } = useForm({ resolver: yupResolver(schema), mode: "onChange" });
+
+  //ADD USER DATA
+  const addUser = (data) => {
     axios
       .post("http://localhost:3001/items", {
-        username: email,
-        password: password,
+        username: data.email,
+        password: data.password,
       })
-      .then((response) => setUser([...user, response.data]))
+      .then((response) => {
+        setUser((prevUser) => [...prevUser, response.data]);
+      })
       .catch((error) => console.error(error));
     console.log(user);
-    verificarCadastro();
-  };
-
-  const verificarCadastro = async () => {
-    try {
-      const response = await axios.get(
-        "http://localhost:3001/verify_User",
-        email
-      );
-      if (response.data.username) {
-        console.log("user encontrado: ", response.data.username);
-      } else {
-        console.log("User nao encontrado");
-      }
-    } catch (error) {
-      console.error("Erro ao verificar user", error);
-    }
   };
 
   return (
@@ -67,7 +69,7 @@ var SignUp = () => {
               <Link title="Suporte" onClick={""}></Link>
             </ItemsLi>
             <ItemsLi>
-              <Link title="Home" onClick={moveToHome}></Link>
+              <Link title="Home" onClick={() => navigate("/home")}></Link>
             </ItemsLi>
             <ItemsLi>
               <Link title="Entrar" onClick={""}></Link>
@@ -77,21 +79,25 @@ var SignUp = () => {
       </NavBar>
       <ContainerData>
         <TextInfo>Coloque seus dados</TextInfo>
-        <Inputs
-          placeHolder="Cadastre um E-MAIL"
-          name="email-SignUp"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        ></Inputs>
-        <Inputs
-          placeHolder="Cadastre uma Senha"
-          name="senha-SignUp"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        ></Inputs>
-        <Button onClick={addUser} content="Registrars"></Button>
+        <form onSubmit={handleSubmit(addUser)}>
+          <Inputs
+            control={control}
+            errorMessage={errors?.email?.message}
+            placeholder="Cadastre um Email"
+            name="email"
+            type="email"
+            leftIcon={<MdEmail />}
+          ></Inputs>
+          <Inputs
+            control={control}
+            errorMessage={errors?.password?.message}
+            placeholder="Cadastre uma Senha"
+            name="password"
+            type="password"
+            leftIcon={<MdLock />}
+          ></Inputs>
+          <Button type="submit" content="Registrar"></Button>
+        </form>
       </ContainerData>
       <Footer>Set Works - 2024</Footer>
     </Wrapper>

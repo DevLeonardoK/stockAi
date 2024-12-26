@@ -16,12 +16,11 @@ import {
 } from "./styles";
 
 import { Link } from "../../Components/ButtonLink";
-import { MdCalendarViewDay } from "react-icons/md";
 
 const Home = () => {
   const navigate = useNavigate();
-  const moveToSignin = () => {
-    navigate("/signin");
+  const moveToSignup = () => {
+    navigate("/signup");
   };
 
   return (
@@ -35,11 +34,11 @@ const Home = () => {
             <ItemsLi>Suporte</ItemsLi>
           </a>
           <a href="">
-            <ItemsLi>Cadastrar</ItemsLi>
+            <ItemsLi>Entrar</ItemsLi>
           </a>
 
           <ItemsLi>
-            <Link title="Entrar" onClick={moveToSignin}></Link>
+            <Link title="Cadastrar" onClick={moveToSignup}></Link>
           </ItemsLi>
         </MenuItemsArea>
       </NavBar>

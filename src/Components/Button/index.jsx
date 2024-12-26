@@ -1,8 +1,8 @@
 import React from "react";
 import { Btn } from "./styles";
 
-const Button = ({ onClick, content }) => {
-  return <Btn onClick={onClick}>{content}</Btn>;
+const Button = ({ content, type }) => {
+  return <Btn type={type}>{content}</Btn>;
 };
 
 export { Button };

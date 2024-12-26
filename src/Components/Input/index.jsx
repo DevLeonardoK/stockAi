@@ -1,16 +1,20 @@
 import React from "react";
-import { Input } from "./styles";
-import { useState } from "react";
-const Inputs = ({ placeHolder, name, type, onChange, value }) => {
+import { InputContainer, ErrorText, IconContainer, InputText } from "./styles";
+import { Controller } from "react-hook-form";
+const Inputs = ({ name, leftIcon, errorMessage, control, ...rest }) => {
   return (
-    <Input
-      placeholder={placeHolder}
-      name={name}
-      type={type}
-      required
-      value={value}
-      onChange={onChange}
-    ></Input>
+    <>
+      <InputContainer>
+        {leftIcon ? <IconContainer>{leftIcon}</IconContainer> : null}
+        <Controller
+          name={name}
+          control={control}
+          rules={{ required: true }}
+          render={({ field }) => <InputText {...field} {...rest} />}
+        ></Controller>
+      </InputContainer>
+      {errorMessage ? <ErrorText>{errorMessage}</ErrorText> : null}
+    </>
   );
 };
 

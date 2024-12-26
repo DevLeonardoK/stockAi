@@ -92,7 +92,3 @@ export const TextInfo = styled.h2`
   color: #000;
   line-height: 80px;
 `;
-
-export const infoBasic = styled.p`
-  color: #000;
-`;
