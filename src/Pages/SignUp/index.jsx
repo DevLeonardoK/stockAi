@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Wrapper,
-  ContainerData,
+  ContainerDataSignUp,
   Footer,
   ItemsLi,
   ItemsUl,
@@ -10,12 +10,20 @@ import {
   NavBar,
   TitleNavBar,
   TextInfo,
-  infoBasic,
+  InfoText,
+  ContainerForms,
+  ContainerDataOptions,
 } from "./styles";
+
+import { IconContainer } from "../../Components/Input/styles";
+
 import { Inputs } from "../../Components/Input";
 import { Button } from "../../Components/Button";
 import { Link } from "../../Components/ButtonLink";
 import { MdEmail, MdLock } from "react-icons/md";
+import { BsChevronDoubleRight, BsChevronDoubleLeft } from "react-icons/bs";
+import { FcCheckmark } from "react-icons/fc";
+import { FcBookmark } from "react-icons/fc";
 
 import axios from "axios";
 import * as yup from "yup";
@@ -59,6 +67,12 @@ var SignUp = () => {
     console.log(user);
   };
 
+  const [isAct, setAct] = useState(false);
+
+  const toggleAct = () => {
+    setAct(!isAct);
+  };
+
   return (
     <Wrapper>
       <NavBar>
@@ -77,28 +91,57 @@ var SignUp = () => {
           </ItemsUl>
         </MenuItemsArea>
       </NavBar>
-      <ContainerData>
-        <TextInfo>Coloque seus dados</TextInfo>
-        <form onSubmit={handleSubmit(addUser)}>
-          <Inputs
-            control={control}
-            errorMessage={errors?.email?.message}
-            placeholder="Cadastre um Email"
-            name="email"
-            type="email"
-            leftIcon={<MdEmail />}
-          ></Inputs>
-          <Inputs
-            control={control}
-            errorMessage={errors?.password?.message}
-            placeholder="Cadastre uma Senha"
-            name="password"
-            type="password"
-            leftIcon={<MdLock />}
-          ></Inputs>
-          <Button type="submit" content="Registrar"></Button>
-        </form>
-      </ContainerData>
+      <ContainerForms>
+        <ContainerDataSignUp>
+          <TextInfo>Cadastro</TextInfo>
+          <form onSubmit={handleSubmit(addUser)}>
+            <Inputs
+              control={control}
+              errorMessage={errors?.email?.message}
+              placeholder="Cadastre um Email"
+              name="email"
+              type="email"
+              leftIcon={<MdEmail />}
+            ></Inputs>
+            <Inputs
+              control={control}
+              errorMessage={errors?.password?.message}
+              placeholder="Cadastre uma Senha"
+              name="password"
+              type="password"
+              leftIcon={<MdLock />}
+            ></Inputs>
+            <Button type="submit" content="Registrar"></Button>
+          </form>
+        </ContainerDataSignUp>
+        <ContainerDataOptions active={isAct}>
+          {isAct ? (
+            <InfoText>
+              <InfoText>
+                <FcCheckmark />
+                Aqui estão algumas dicas para obter uma senha forte:
+              </InfoText>
+              <br />
+              <InfoText>
+                <FcBookmark /> Pelo menos 12 caracteres.
+              </InfoText>
+              <br />
+              <InfoText>
+                <FcBookmark /> Maiúsculas, minúsculas, números e símbolos
+              </InfoText>
+              <br />
+              <InfoText>
+                <FcBookmark /> Use frases e palavras secretas
+              </InfoText>
+            </InfoText>
+          ) : null}
+          {isAct ? (
+            <BsChevronDoubleLeft onClick={toggleAct} />
+          ) : (
+            <BsChevronDoubleRight onClick={toggleAct} />
+          )}
+        </ContainerDataOptions>
+      </ContainerForms>
       <Footer>Set Works - 2024</Footer>
     </Wrapper>
   );

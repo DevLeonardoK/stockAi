@@ -19,14 +19,13 @@ export const NavBar = styled.nav`
   color: #000;
   justify-content: space-between;
   align-items: center;
-  border-radius: 50px 20px;
 `;
 
 export const TitleNavBar = styled.h1`
   font-size: 80px;
-  font-family: "Parkinsans";
+  font-family: "Montserrat";
   margin-left: 90px;
-  font-weight: 600;
+  font-weight: 700;
 `;
 
 export const MenuItemsArea = styled.div`
@@ -43,11 +42,12 @@ export const ItemsUl = styled.ul`
 `;
 
 export const ItemsLi = styled.li`
-  font-size: 20px;
+  font-size: 21px;
+  font-weight: 500;
   color: #000;
   padding: 35px;
   list-style: none;
-  font-family: "Parkinsans";
+  font-family: "Montserrat";
   text-decoration: none;
   opacity: 0.8;
 
@@ -73,11 +73,12 @@ export const AreaInfo = styled.div`
 `;
 
 export const TextInfo = styled.h2`
-  font-family: "Poppins";
+  font-family: "Montserrat";
   font-size: 63px;
   font-weight: 400;
   color: #fff;
   line-height: 80px;
+  text-indent: 50px;
 `;
 
 export const Img = styled.img`
@@ -101,6 +102,6 @@ export const Footer = styled.footer`
   background-color: #fff;
   color: #000;
   font-size: 25px;
-  font-family: "Parkinsans";
-  border-radius: 20px 50px;
+  font-family: "Montserrat";
+  font-weight: 400;
 `;

@@ -45,8 +45,8 @@ const Home = () => {
       <AreaLogoInfo>
         <AreaInfo>
           <TextInfo>
-            -- As suas tarefas <br />
-            em um só lugar --
+            As suas tarefas <br />
+            em um só lugar
           </TextInfo>
         </AreaInfo>
         <AreaInfo>
