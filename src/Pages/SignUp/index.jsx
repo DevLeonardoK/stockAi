@@ -13,9 +13,11 @@ import {
   InfoText,
   ContainerForms,
   ContainerDataOptions,
+  LoadingContainer,
 } from "./styles";
 
 import { IconContainer } from "../../Components/Input/styles";
+import { OrbitProgress } from "react-loading-indicators";
 
 import { Inputs } from "../../Components/Input";
 import { Button } from "../../Components/Button";
@@ -24,7 +26,7 @@ import { MdEmail, MdLock } from "react-icons/md";
 import { BsChevronDoubleRight, BsChevronDoubleLeft } from "react-icons/bs";
 import { FcCheckmark } from "react-icons/fc";
 import { FcBookmark } from "react-icons/fc";
-
+import Swal from "sweetalert2";
 import axios from "axios";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -46,6 +48,34 @@ const schema = yup
 var SignUp = () => {
   const [user, setUser] = useState([]); //user data (password and email)
   const navigate = useNavigate();
+  const [mode, setMode] = useState(false);
+
+  function AlertInfoError() {
+    Swal.fire({
+      title: "Error",
+      text: "Ocorreu um erro",
+      icon: "error",
+      confirmButtonText: "Ok, fechar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setMode(false);
+      }
+    });
+  }
+
+  function AlertInfOk() {
+    Swal.fire({
+      title: "Sucesso",
+      text: "Usuário cadastrado",
+      icon: "success",
+      confirmButtonText: "OK, fazer login",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setMode(false);
+        navigate("/home");
+      }
+    });
+  }
 
   const {
     control,
@@ -55,15 +85,20 @@ var SignUp = () => {
 
   //ADD USER DATA
   const addUser = (data) => {
+    setMode(true);
     axios
       .post("http://localhost:3001/items", {
         username: data.email,
         password: data.password,
       })
       .then((response) => {
+        AlertInfOk();
         setUser((prevUser) => [...prevUser, response.data]);
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        AlertInfoError();
+        console.log(error);
+      });
     console.log(user);
   };
 
@@ -111,7 +146,19 @@ var SignUp = () => {
               type="password"
               leftIcon={<MdLock />}
             ></Inputs>
-            <Button type="submit" content="Registrar"></Button>
+
+            {mode ? (
+              <LoadingContainer>
+                <OrbitProgress
+                  color="#000000"
+                  size="small"
+                  text="loading"
+                  textColor=""
+                />
+              </LoadingContainer>
+            ) : (
+              <Button type="submit" content="Registrar"></Button>
+            )}
           </form>
         </ContainerDataSignUp>
         <ContainerDataOptions active={isAct}>

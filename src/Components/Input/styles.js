@@ -18,6 +18,7 @@ export const InputText = styled.input`
   width: 350px;
   height: 50px;
   background-color: transparent;
+  font-family: "Poppins";
 
   color: #000;
   border: 0;

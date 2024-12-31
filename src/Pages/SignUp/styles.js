@@ -11,6 +11,15 @@ export const Wrapper = styled.main`
   gap: 150px;
 `;
 
+export const LoadingContainer = styled.div`
+  width: 300px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+`;
+
 export const ContainerForms = styled.div`
   width: 1100px;
   height: 450px;

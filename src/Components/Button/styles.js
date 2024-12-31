@@ -6,6 +6,6 @@ export const Btn = styled.button`
   background-color: #2e2e2e;
   color: #fff;
   font-size: 25px;
-  font-family: "Parkinsans";
+  font-family: "Montserrat";
   border-radius: 100px;
 `;
