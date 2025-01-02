@@ -87,8 +87,8 @@ var SignUp = () => {
   const addUser = (data) => {
     setMode(true);
     axios
-      .post("http://localhost:3001/items", {
-        username: data.email,
+      .post("http://localhost:3001/auth/register", {
+        email: data.email,
         password: data.password,
       })
       .then((response) => {
@@ -131,6 +131,7 @@ var SignUp = () => {
           <TextInfo>Cadastro</TextInfo>
           <form onSubmit={handleSubmit(addUser)}>
             <Inputs
+              activate={true}
               control={control}
               errorMessage={errors?.email?.message}
               placeholder="Cadastre um Email"
@@ -139,6 +140,7 @@ var SignUp = () => {
               leftIcon={<MdEmail />}
             ></Inputs>
             <Inputs
+              activate={true}
               control={control}
               errorMessage={errors?.password?.message}
               placeholder="Cadastre uma Senha"

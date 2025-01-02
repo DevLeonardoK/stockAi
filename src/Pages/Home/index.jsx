@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import imgCalendar from "../../assets/calendarImg.png";
 import {
   ItemsLi,
   ItemsUl,
@@ -16,12 +15,13 @@ import {
 } from "./styles";
 
 import { Link } from "../../Components/ButtonLink";
+import Lottie from "lottie-react";
+import animationData from "../../assets/animation.json";
+import a2 from "../../assets/a2.json";
+import a3 from "../../assets/a3.json";
 
 const Home = () => {
   const navigate = useNavigate();
-  const moveToSignup = () => {
-    navigate("/signup");
-  };
 
   return (
     <Wrapper>
@@ -38,19 +38,20 @@ const Home = () => {
           </a>
 
           <ItemsLi>
-            <Link title="Cadastrar" onClick={moveToSignup}></Link>
+            <Link title="Cadastrar" onClick={() => navigate("/signup")}></Link>
           </ItemsLi>
         </MenuItemsArea>
       </NavBar>
       <AreaLogoInfo>
         <AreaInfo>
           <TextInfo>
-            As suas tarefas <br />
-            em um só lugar
+            " Uma nova maneira
+            <br />
+            de organizar seu estoque "
           </TextInfo>
         </AreaInfo>
         <AreaInfo>
-          <Img src={imgCalendar}></Img>
+          <Lottie animationData={a3} loop={true} />
         </AreaInfo>
       </AreaLogoInfo>
       <Footer>Set Works - 2024</Footer>

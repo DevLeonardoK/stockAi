@@ -11,6 +11,7 @@ export const Wrapper = styled.main`
 `;
 
 export const NavBar = styled.nav`
+  position: static;
   margin-top: 20px;
   width: 95%;
   height: 120px;
@@ -67,15 +68,15 @@ export const AreaLogoInfo = styled.section`
 
 export const AreaInfo = styled.div`
   display: flex;
-  width: 45%;
+  width: 40%;
   justify-content: center;
   align-items: center;
 `;
 
 export const TextInfo = styled.h2`
-  font-family: "Montserrat";
-  font-size: 63px;
-  font-weight: 400;
+  font-family: "Ubuntu";
+  font-size: 50px;
+  font-weight: 500;
   color: #fff;
   line-height: 80px;
   text-indent: 50px;

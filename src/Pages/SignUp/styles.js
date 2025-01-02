@@ -22,7 +22,7 @@ export const LoadingContainer = styled.div`
 
 export const ContainerForms = styled.div`
   width: 1100px;
-  height: 450px;
+  height: 430px;
   background-color: transparent;
   display: flex;
   align-items: center;

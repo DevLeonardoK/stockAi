@@ -46,6 +46,7 @@ export const NavBar = styled.nav`
   justify-content: space-between;
   align-items: center;
   border-radius: 50px 20px;
+  position: static;
 `;
 
 export const TitleNavBar = styled.h1`
