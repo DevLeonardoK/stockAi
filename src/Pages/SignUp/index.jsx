@@ -16,7 +16,6 @@ import {
   LoadingContainer,
 } from "./styles";
 
-import { IconContainer } from "../../Components/Input/styles";
 import { OrbitProgress } from "react-loading-indicators";
 
 import { Inputs } from "../../Components/Input";
@@ -131,7 +130,6 @@ var SignUp = () => {
           <TextInfo>Cadastro</TextInfo>
           <form onSubmit={handleSubmit(addUser)}>
             <Inputs
-              activate={true}
               control={control}
               errorMessage={errors?.email?.message}
               placeholder="Cadastre um Email"
@@ -140,7 +138,6 @@ var SignUp = () => {
               leftIcon={<MdEmail />}
             ></Inputs>
             <Inputs
-              activate={true}
               control={control}
               errorMessage={errors?.password?.message}
               placeholder="Cadastre uma Senha"

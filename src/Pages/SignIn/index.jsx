@@ -16,6 +16,19 @@ import { Button } from "../../Components/Button";
 import { Link } from "../../Components/ButtonLink";
 import axios from "axios";
 import { MdEmail, MdLock } from "react-icons/md";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+const schema = yup
+  .object({
+    email: yup
+      .string()
+      .email("Email não é válido")
+      .required("O Email é obrigatório"),
+    password: yup.string().required("A senha é obrigatória"),
+  })
+  .required();
 
 var SignIn = () => {
   const [password, setPassword] = useState(""); //pegando senha do input
@@ -23,36 +36,30 @@ var SignIn = () => {
   const [user, setUser] = useState([]);
   const [resData, setResData] = useState([]);
   const navigate = useNavigate();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema), mode: "onChange" });
+
   const moveToHome = () => {
     navigate("/home");
   };
 
-  // --> //CHECK USER DATA
-  // const verificarData = () => {
-  //   axios
-  //     .post("http://localhost:3001/verify_user", {
-  //       username: email,
-  //     })
-  //     .then((response) => {
-  //       setResData(response.data); //Guardando a response do server
-  //       console.log("User verificado no db: ", resData); //exibindo a response data
-  //     })
-  //     .catch((error) => console.error(error));
-  // };
+  //ADD USERS
+  const LoginUser = (data) => {
+    // axios
+    //   .post("http://localhost:3001/auth/login", {
+    //     email: email,
+    //     password: password,
+    //   })
+    //   .then((response) => {
+    //     // setUser([...user, response.data]);
+    //     console.log("User criado com sucesso:");
+    //   })
+    //   .catch((error) => console.error(error));
 
-  //ADD USERS e CHECK USER DATA
-  const LoginUser = () => {
-    axios
-      .post("http://localhost:3001/items", {
-        username: email,
-        password: password,
-      })
-      .then((response) => {
-        setUser([...user, response.data]);
-        console.log("User criado com sucesso: DATA _>");
-        console.log(user);
-      })
-      .catch((error) => console.error(error));
+    console.log(JSON.stringify(data));
   };
 
   return (
@@ -75,24 +82,35 @@ var SignIn = () => {
       </NavBar>
       <ContainerData>
         <TextInfo>Coloque seus dados</TextInfo>
-        <form>
+        <form onSubmit={handleSubmit(LoginUser)}>
           <Inputs
-            placeHolder="Login E-mail"
-            name="email-SignIn"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            control={control}
+            placeholder="Login E-mail"
             leftIcon={<MdEmail />}
-            Required={true}
+            type="email"
+            errorMessage={errors?.email?.message}
+            name="email"
           ></Inputs>
+
           <Inputs
+            type="password"
+            control={control}
+            placeholder="Login Senha"
+            leftIcon={<MdEmail />}
+            errorMessage={errors?.password?.message}
+            name="password"
+          ></Inputs>
+
+          {/* <Inputs
+            activate={false}
             placeHolder="Login Senha"
             name="senha-SignIn"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             leftIcon={<MdLock />}
-          ></Inputs>
+          ></Inputs> */}
+          <Button type="submit" content="Entrar"></Button>
         </form>
-        <Button onClick={LoginUser} content="Entrar"></Button>
       </ContainerData>
       <Footer>Set Works - 2024</Footer>
     </Wrapper>

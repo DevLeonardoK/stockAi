@@ -9,28 +9,20 @@ const Inputs = ({
   leftIcon,
   errorMessage,
   control,
+  type,
   ...rest
 }) => {
   return (
     <>
-      {activate ? (
-        <InputContainer>
-          {leftIcon ? <IconContainer>{leftIcon}</IconContainer> : null}
-          <Controller
-            name={name}
-            control={control}
-            rules={{ required: true }}
-            render={({ field }) =>
-              activate ? <InputText {...field} {...rest} /> : null
-            }
-          ></Controller>
-        </InputContainer>
-      ) : (
-        <InputContainer>
-          {leftIcon ? <IconContainer>{leftIcon}</IconContainer> : null}
-          <InputText value={Value} placeholder={placeHolder}></InputText>
-        </InputContainer>
-      )}
+      <InputContainer>
+        {leftIcon ? <IconContainer>{leftIcon}</IconContainer> : null}
+        <Controller
+          name={name}
+          control={control}
+          rules={{ required: true }}
+          render={({ field }) => <InputText {...field} {...rest} />}
+        ></Controller>
+      </InputContainer>
 
       {errorMessage ? <ErrorText>{errorMessage}</ErrorText> : null}
     </>
