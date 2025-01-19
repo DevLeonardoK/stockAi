@@ -13,23 +13,6 @@ identificar produtos já cadastrados.
 - **CSS**: Linguagem de estilização para a formatação visual da aplicação.
 - **React Router**: Para gerenciar as rotas de navegação na aplicação.
 
-## Como Executar
-
-Para rodar o projeto localmente, siga os seguintes passos:
-
-1. Clone o repositório:
-   ```bash
-   git clone <URL-do-repositório>
-2. Navegue até o diretório do projeto:
-    ```bash
-   cd nome-do-diretório
-4. Instale as dependências:
-   ```bash
-   npm install
-4. Execute o servidor de desenvolvimento:
-    ```bash
-   npm start
-5. A aplicação estará disponível em http://localhost:3000.
 
 
 ## Funcionalidades
